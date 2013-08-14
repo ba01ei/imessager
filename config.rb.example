@@ -1,12 +1,16 @@
 
-CONFIG = {
-  "GMail" => [
-    {"account" => "myaddress@gmail.com", 
-    "password" => "mypassword",
-    "schedule" => "*/5 * * * *",
-    }
-  ],
-  "IMessage" => [
-    "+19876543210",
-  ],
+TRIGGERS = {
+  "GMail" => {
+    "accounts" => [
+      {"username" => "myaddress@gmail.com", 
+      "password" => "mypassword",
+      }
+    ],
+    "period" => 5
+  }
 }
+
+RECEIVERS = [
+  "+19876543210",
+]
+
