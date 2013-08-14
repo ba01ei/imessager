@@ -3,7 +3,7 @@ require 'gmail'
 class GMail
 
   def self.run(conf, testing)
-    trace_back = testing ? 1000000 : 2
+    trace_back = testing ? 1000000 : 10
     output = []
     conf["accounts"].each do |account|
       Gmail.connect(account["username"], account["password"]) do |g|
@@ -17,7 +17,7 @@ class GMail
       end
     end
     puts output.join("\n") if testing
-    output
+    return output
   end
   
 end

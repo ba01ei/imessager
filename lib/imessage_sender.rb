@@ -9,7 +9,7 @@ class IMessageSender
              "  keystroke \"#{phone}\"\n" +
              "  keystroke return\n" +
              "  keystroke tab\n" +
-             "  keystroke \"#{text.gsub("\"", "\\\"")}\"\n" +
+             "  keystroke \"#{text.gsub("\"", "\\\"").gsub("'", "\\'")}\"\n" +
              "  keystroke return\n" +
              "end tell"
     script
@@ -17,6 +17,7 @@ class IMessageSender
 
   # sends an imessage
   def self.send(phone, text)
+    puts "apple script: #{self.apple_script(phone, text)}"
     `osascript -e '#{self.apple_script(phone, text)}'`
   end
 end

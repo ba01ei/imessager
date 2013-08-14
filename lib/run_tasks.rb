@@ -15,9 +15,11 @@ if __FILE__ == $0
   require File.join(DIR, "..", "plugins", trigger.downcase + ".rb")
   cls = Object.const_get(trigger)
   messages = cls.run(TRIGGERS[trigger], testing)
+  # puts "messages: #{messages.count}"
   RECEIVERS.each do |phone|
     messages.each do |txt|
       IMessageSender.send(phone, txt)
+      sleep 2
     end
   end
 end
