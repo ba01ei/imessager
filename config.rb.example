@@ -1,0 +1,12 @@
+
+CONFIG = {
+  :gmail => [
+    {:account => "myaddress@gmail.com", 
+    :password => "mypassword",
+    :schedule => "*/5 * * * *",
+    }
+  ],
+  :imessage => [
+    "+19876543210",
+  ],
+}
