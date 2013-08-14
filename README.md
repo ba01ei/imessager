@@ -3,7 +3,7 @@ Summary
 
 iMessager is a tool to convert gmail (and potentially other triggers) to iMessage.
 
-It runs on Mac OS, creates a cron job, and use Messages app to send the iMessage.
+It runs on Mac OS, creates a cron job, and uses Messages app to send the iMessage.
 
 Usage
 =====
@@ -23,7 +23,7 @@ Developers can create new triggers other than gmail (e.g. other email system, we
 
 1. Make a name for the plugin, e.g. RssFeed
 2. Create an rb file in the plugins folder using the same name as the plugin but in lower case, e.g. plugins/rssfeed.rb
-3. In the rb file, define a class with the same name, e.g. class RssFeed. Implement a class method self.run which takes a config dictionary as input and returns an array of iMessage strings.
+3. In the rb file, define a class with the same name, e.g. class RssFeed. Implement a class method self.run which takes a config dictionary and a boolean "testing" as input and returns an array of iMessage strings. testing is true if the user is calling textnow.rb to just test the trigger.
 4. In config.rb, add an entry in TRIGGERS, with the plugin name as the key, and the config dictionary as the value. Make sure that the config dictionary should at least have a key "period". E.g. "RssFeed" => {"period"=>"5", "url"=>"the feel url"}
 
 
