@@ -5,6 +5,15 @@ iMessager is a tool to convert gmail (and potentially other triggers) to iMessag
 
 It runs on Mac OS, creates a cron job, and uses Messages app to send the iMessage.
 
+
+Why this is built
+=================
+
+As of August 2013, Pebble smartwatch cannot consistently get email push notifications from iPhone. One workaround is to use IFTTT to convert gmail to sms, but sms is not free. That's why a tool to convert gmail to iMessage is more promising.
+
+Other than pushing emails to Pebble, one use case of iMessager is that for people who get a lot of emails (e.g. if you subscribe to some news letters to your inbox), this tool helps you to mark everything as read automatically, and pushes brief previews to your iPhone, so that you can quickly get an idea of what is going on, skip most of the emails and read only the ones that you are very interested, without selecting every single mail in the mail client or web interface.
+
+
 Usage
 =====
 
@@ -27,6 +36,8 @@ Developers can create new triggers other than gmail (e.g. other email system, we
 2. Create an rb file in the plugins folder using the same name as the plugin but in lower case, e.g. plugins/rssfeed.rb
 3. In the rb file, define a class with the same name, e.g. class RssFeed. Implement a class method self.run which takes a config dictionary and a boolean "testing" as input and returns an array of iMessage strings. testing is true if the user is calling textnow.rb to just test the trigger.
 4. In config.rb, add an entry in TRIGGERS, with the plugin name as the key, and the config dictionary as the value. Make sure that the config dictionary should at least have a key "period". E.g. "RssFeed" => {"period"=>"5", "url"=>"the feel url"}
+
+Once you created a tempate for config.rb, it is recommended to call "git update-index --assume-unchange config.rb", so that your personal settings in config won't be pushed to git server.
 
 
 License
