@@ -17,7 +17,7 @@ class IMessageSender
 
   # sends an imessage
   def self.send(phone, text)
-    puts "apple script: #{self.apple_script(phone, text)}"
+    # puts "apple script: #{self.apple_script(phone, text)}"
     `osascript -e '#{self.apple_script(phone, text)}'`
   end
 end
