@@ -19,7 +19,7 @@ class IMessageSender
              "  delay 0.5\n" +
              "  keystroke \"a\" using {command down}\n" +
              "	delay 0.5\n" +
-             "  keystroke \"#{text.gsub("\"", "\\\"").gsub("'", "\\'").gsub("\t", " ")}\"\n" +
+             "  keystroke \"#{text.gsub("\"", "\\\"").gsub("'", "\\\"").gsub("\t", " ")}\"\n" +
              "  keystroke return\n" +
              "end tell"
     script
@@ -28,7 +28,11 @@ class IMessageSender
   # sends an imessage
   def self.send(phone, text)
     puts "apple script: #{self.apple_script(phone, text)}"
-    `osascript -e '#{self.apple_script(phone, text)}'`
+    result = system("osascript -e '#{self.apple_script(phone, text)}'")
+    unless result
+      puts "error executing applescript. sending email.."
+      `echo "#{text.gsub(/[^0-9a-z]/i, ' ')}" | mail -s "error executing applescript" baolei1234@gmail.com`
+    end
   end
 end
 
