@@ -9,7 +9,7 @@ Usage
 =====
 
 1. Setup Messages app. Login with an iCloud account that can send iMessage. Make sure Messages app is running.
-2. Edit config.rb, add the gmail account, password, and a phone number where you receive iMessage.
+2. Edit config.rb, add the gmail account, password, and a phone number where you receive iMessage. (There is a config.rb.example file you can follow.)
 3. Open Terminal app, run the command "sudo gem install gmail". (If you are a ruby developer, you can just call bundle install in imessager folder.)
 4. Run ./setup.rb in Terminal app in the imessager folder. (e.g. if you downloaded imessager to Downloads folder, you can enter: "cd ~/Downloads", return, and then "./setup.rb" and return)
 
