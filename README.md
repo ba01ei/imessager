@@ -27,6 +27,14 @@ Now a periodical job is scheduled. Depending on the settings in config.rb, once 
 To test if the setup is actually working, you can also go to your gmail and mark the most recent email as unread, and call "./testnow.rb" in Terminal app in the imessager folder to test if the iMessage can be successfully sent.
 
 
+Limitation
+==========
+
+Because there's no official iMessage API yet, this tool uses AppleScript to send iMessages through its user interface. This means that if you run this tool on a computer you actually use, there might be periodically interruptions. (e.g. when you are surfing the Internet, Messages app might suddenly pop up and automatically types some text.)
+
+Therefore it is recommended to use a Mac that is not heavily used to run this job. (E.g. you have an old Mac and recently bought a new Macbook Air, the old Mac can sit in a corner in your bedroom and do this job with its screen turned off, while you are playing with your new Mac.)
+
+
 Developing new features
 =======================
 
