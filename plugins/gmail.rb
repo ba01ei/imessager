@@ -8,7 +8,7 @@ class GMail
     conf["accounts"].each do |account|
       Gmail.connect(account["username"], account["password"]) do |g|
         mails = g.inbox.emails(:unread, :after => (Time.now - trace_back*60*conf["period"]))
-        puts "new emails for #{account["username"]}: #{mails.count}"
+        puts "new emails for #{account["username"]}: #{mails.count}" if testing
         mails.each do |m|
          bodytext = "#{m.text_part.body}"
          output << "#{m.from[0].name}: #{m.subject}\n#{bodytext[0..199]}"
