@@ -13,7 +13,9 @@ Usage
 3. Open Terminal app, run the command "sudo gem install gmail". (If you are a ruby developer, you can just call bundle install in imessager folder.)
 4. Run ./setup.rb in Terminal app in the imessager folder. (e.g. if you downloaded imessager to Downloads folder, you can enter: "cd ~/Downloads", return, and then "./setup.rb" and return)
 
-Optionally, you can also go to your gmail and mark the most recent email as unread, and call "./testnow.rb" in Terminal app in the imessager folder to test if the iMessage can be successfully sent.
+Now a periodical job is scheduled. Depending on the settings in config.rb, once every few minutes it will automatically check your gmail inbox, send an iMessage for the new email, and mark it as read in the inbox.
+
+To test if the setup is actually working, you can also go to your gmail and mark the most recent email as unread, and call "./testnow.rb" in Terminal app in the imessager folder to test if the iMessage can be successfully sent.
 
 
 Developing new features
