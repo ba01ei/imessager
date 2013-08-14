@@ -19,7 +19,7 @@ class IMessageSender
              "  delay 0.5\n" +
              "  keystroke \"a\" using {command down}\n" +
              "	delay 0.5\n" +
-             "  keystroke \"#{text.gsub("\"", "`").gsub("'", "`").gsub("\t", " ").gsub("\n", " *** ")}\"\n" +
+             "  keystroke \"#{text.gsub("\"", "`").gsub("'", "`").gsub("\t", " ").gsub("\n", " *** ").gsub("\r", " ")}\"\n" +
              "  keystroke return\n" +
              "end tell"
     script
@@ -27,7 +27,7 @@ class IMessageSender
 
   # sends an imessage
   def self.send(phone, text)
-    # puts "apple script: #{self.apple_script(phone, text)}"
+    puts "apple script: #{self.apple_script(phone, text)}"
     result = system("osascript -e '#{self.apple_script(phone, text)}'")
     unless result
       puts "error executing applescript. sending simplified version.."
