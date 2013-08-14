@@ -17,11 +17,11 @@ if __FILE__ == $0
   messages = cls.run(TRIGGERS[trigger], testing)
   # puts "messages: #{messages.count}"
   RECEIVERS.each do |phone|
-    if phone.to_s.length < 1 or txt.to_s.length < 1
+    if phone.to_s.length < 1
       next
     end
     messages.each do |txt|
-      IMessageSender.send(phone, txt)
+      IMessageSender.send(phone, txt) if txt.to_s.length > 0
       sleep 2
     end
   end
