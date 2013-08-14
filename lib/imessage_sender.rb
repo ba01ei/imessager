@@ -19,7 +19,7 @@ class IMessageSender
              "  delay 0.5\n" +
              "  keystroke \"a\" using {command down}\n" +
              "	delay 0.5\n" +
-             "  keystroke \"#{text.gsub("\"", "\\\"").gsub("'", "\\\"").gsub("\t", " ")}\"\n" +
+             "  keystroke \"#{text.gsub("\"", "`").gsub("'", "`").gsub("\t", " ")}\"\n" +
              "  keystroke return\n" +
              "end tell"
     script
