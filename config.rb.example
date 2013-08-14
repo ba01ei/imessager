@@ -1,12 +1,12 @@
 
 CONFIG = {
-  :gmail => [
-    {:account => "myaddress@gmail.com", 
-    :password => "mypassword",
-    :schedule => "*/5 * * * *",
+  "GMail" => [
+    {"account" => "myaddress@gmail.com", 
+    "password" => "mypassword",
+    "schedule" => "*/5 * * * *",
     }
   ],
-  :imessage => [
+  "IMessage" => [
     "+19876543210",
   ],
 }
