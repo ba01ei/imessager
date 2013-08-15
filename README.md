@@ -26,6 +26,7 @@ Now a periodical job is scheduled. Depending on the settings in config.rb, once 
 
 To test if the setup is actually working, you can also go to your gmail and mark the most recent email as unread, and call "./testnow.rb" in Terminal app in the imessager folder to test if the iMessage can be successfully sent.
 
+If you moved the folder to another location, you need to call ./setup.rb again.
 
 Limitation
 ==========
