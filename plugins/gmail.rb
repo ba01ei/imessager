@@ -16,7 +16,7 @@ class GMail
         mails = g.inbox.emails(:unread, :after => (Time.now - trace_back*60*conf["period"]))
         puts "new emails for #{account["username"]}: #{mails.count}" if testing
         mails.each do |m|
-         bodytext = m.text_part ? "#{m.text_part.body}" : ""
+         bodytext = m.text_part ? m.text_part.body.to_s : (m.body.to_s.length > 0 ? m.body.to_s : "")
          output << "#{m.from[0].name}: #{m.subject}\n#{bodytext[0..199]}"
          m.read!
         end
