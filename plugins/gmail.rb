@@ -17,7 +17,7 @@ class GMail
         puts "new emails for #{account["username"]}: #{mails.count}" if testing
         mails.each do |m|
          bodytext = m.text_part ? m.text_part.body.to_s : (m.body.to_s.length > 0 ? m.body.to_s : "")
-         output << "#{m.from[0].name}: #{m.subject}\n#{bodytext[0..199]}"
+         output << "#{m.from[0].name}: #{m.subject} === #{bodytext}"[0..10240]
          m.read!
         end
       end
