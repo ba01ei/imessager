@@ -13,6 +13,7 @@ As of August 2013, Pebble smartwatch cannot consistently get email push notifica
 
 Other than pushing emails to Pebble, one use case of iMessager is that for people who get a lot of emails (e.g. if you subscribe to some news letters to your inbox), this tool helps you to mark everything as read automatically, and pushes brief previews to your iPhone, so that you can quickly get an idea of what is going on, skip most of the emails and read only the ones that you are very interested, without selecting every single mail in the mail client or web interface.
 
+And potentially we can implement more feature on top of this. In addition to gmail, there are a lot of possibilities, e.g. tracking a news feed, the weather, or some other services like Facebook, Twitter, and convert various notifications into iMessage.
 
 Usage
 =====
@@ -28,12 +29,14 @@ After downloading, follow the steps below to setup:
 2. Edit config.rb, add the gmail account, password, and a phone number where you receive iMessage. (There is a config.rb.example file you can follow.)
 3. Open Terminal app, run the command "sudo gem install gmail". (If you are a ruby developer, you can just call bundle install in imessager folder.)
 4. Run ./setup.rb in Terminal app in the imessager folder. (e.g. if you downloaded imessager to Downloads folder, you can enter: "cd ~/Downloads/imessager-master", return, and then "./setup.rb" and return)
+5. To keep it working reliably, it's recommended to disable all the mechanisms that can lock the computer (e.g. uncheck System Preferences -> Security -> General -> Require password after sleep or screen saver begins), and make sure that the computer won't sleep when power adapter is plugged in.
 
 Now a periodical job is scheduled. Depending on the settings in config.rb, once every few minutes it will automatically check your gmail inbox, send an iMessage for the new email, and mark it as read in the inbox.
 
 To test if the setup is actually working, you can also go to your gmail and mark the most recent email as unread, and call "./testnow.rb" in Terminal app in the imessager folder to test if the iMessage can be successfully sent.
 
 If you moved the folder to another location, you need to call ./setup.rb again.
+
 
 Limitation
 ==========
