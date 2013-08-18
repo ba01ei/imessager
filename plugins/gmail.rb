@@ -3,7 +3,7 @@ require 'gmail'
 class GMail
 
   def self.run(conf, testing)
-    trace_back = testing ? 1000000 : 10
+    trace_back = testing ? 30*24*3600 : 2*24*3600
     output = []
     conf["accounts"].each do |account|
       # validate first
@@ -13,7 +13,7 @@ class GMail
       end
 
       Gmail.connect(account["username"], account["password"]) do |g|
-        mails = g.inbox.emails(:unread, :after => (Time.now - trace_back*60*conf["period"]))
+        mails = g.inbox.emails(:unread, :after => (Time.now - trace_back))
         puts "new emails for #{account["username"]}: #{mails.count}" if testing
         mails.each do |m|
          bodytext = m.text_part ? m.text_part.body.to_s : (m.body.to_s.length > 0 ? m.body.to_s : "")
