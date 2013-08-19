@@ -18,7 +18,7 @@ class GMail
         mails.each do |m|
          bodytext = m.text_part ? m.text_part.body.to_s : (m.body.to_s.length > 0 ? m.body.to_s : "")
          t = Time.now.localtime
-         output << "#{m.from[0].name}: #{m.subject} === #{bodytext.gsub("&amp;", "&")}"[0..512] + " (#{t.hour}:#{t.min})"
+         output << "#{m.from[0].name}: #{m.subject} === #{bodytext}".gsub("&amp;", "&").gsub(/=\?WINDOWS-\d+\?Q\?/, "")[0..512] + " (#{t.hour}:#{t.min})"
          m.read!
         end
       end
