@@ -15,6 +15,9 @@ class IMessageSender
              "  keystroke \"#{phone}\"\n" +
              "  keystroke return\n" +
              "	delay 0.5\n" +
+             "  keystroke \"#{phone}\"\n" +
+             "  keystroke return\n" +
+             "	delay 0.5\n" +
              "  keystroke tab\n" +
              "  delay 0.5\n" +
              "  keystroke \"a\" using {command down}\n" +
