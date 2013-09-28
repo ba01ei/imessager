@@ -18,19 +18,29 @@ class GMail
         mails.each do |m|
           bodytext = m.text_part ? m.text_part.body.to_s : (m.body.to_s.length > 0 ? m.body.to_s : "")
           t = Time.now.localtime
-          output << "#{m.from[0].name}: #{m.subject} === #{bodytext}".gsub("&amp;", "&").gsub(/=\?WINDOWS-\d+\?Q\?/, "")[0..512] + " (#{t.hour}:#{t.min})"
+          message = "#{m.from[0].name}: #{m.subject} === #{bodytext}".gsub("&amp;", "&").gsub(/=\?WINDOWS-\d+\?Q\?/, "")[0..512] + " (#{t.hour}:#{t.min})"
           keep = false
+          ignore = false
           subject_l = m.subject.downcase
           conf["keep"].each do |query|
-              if subject_l.index(query.downcase)
-                keep = true
+            if subject_l.index(query.downcase)
+              keep = true
               break
             end
+          end
+          conf["ignore"].each do |query|
+             if subject_l.index(query.downcase)
+               ignore = true
+               break
+             end
           end
           if keep
             m.unread!
           else
             m.read!
+          end
+          unless ignore
+            output << message
           end
         end
       end
