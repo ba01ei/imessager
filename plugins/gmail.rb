@@ -12,6 +12,25 @@ class GMail
         return []
       end
 
+      t = Time.now
+      t_num = t.hour * 100 + t.min
+      sleeping = false
+      if conf["sleep"]
+        if conf["sleep"][0] > conf["sleep"][1]
+          if t_num >= conf["sleep"][0] or t_num <= conf["sleep"][1]
+            sleeping = true
+          end
+        else
+          if t_num >= conf["sleep"][0] and t_num <= conf["sleep"][1]
+            sleeping = true
+          end
+        end
+        if sleeping
+          puts "sleeping at this moment.." if testing
+          return []
+        end
+      end
+
       Gmail.connect(account["username"], account["password"]) do |g|
         mails = g.inbox.emails(:unread, :after => (Time.now - trace_back))
         puts "new emails for #{account["username"]}: #{mails.count}" if testing
