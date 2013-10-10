@@ -12,6 +12,7 @@ class GMail
         return []
       end
 
+      # sleep check
       t = Time.now
       t_num = t.hour * 100 + t.min
       sleeping = false
@@ -34,7 +35,12 @@ class GMail
       Gmail.connect(account["username"], account["password"]) do |g|
         mails = g.inbox.emails(:unread, :after => (Time.now - trace_back))
         puts "new emails for #{account["username"]}: #{mails.count}" if testing
-        mails.each do |m|
+        last = -1
+        if conf["limit"] and mails.count > conf["limit"]
+          last = conf["limit"] - 1
+          puts "mail range: 0..#{last}" if testing
+        end
+        mails[0..last].each do |m|
           bodytext = m.text_part ? m.text_part.body.to_s : (m.body.to_s.length > 0 ? m.body.to_s : "")
           t = Time.now.localtime
           message = "#{m.from[0].name}: #{m.subject} === #{bodytext}".gsub("&amp;", "&").gsub(/=\?WINDOWS-\d+\?Q\?/, "")[0..512] + " (#{t.hour}:#{t.min})"
