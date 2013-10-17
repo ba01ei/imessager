@@ -30,12 +30,15 @@ class IMessageSender
 
   # sends an imessage
   def self.send(phone, text)
-    puts "apple script: #{self.apple_script(phone, text)}"
-    result = system("osascript -e '#{self.apple_script(phone, text)}'")
-    unless result
-      puts "error executing applescript. sending simplified version.."
-      simple = text.gsub(/[^0-9a-z]/i, ' ')
-      system("osascript -e '#{self.apple_script(phone, simple)}'")
+    File.open("/tmp/.imessager", "w") do |f|
+      f.flock File::LOCK_EX
+      puts "apple script: #{self.apple_script(phone, text)}"
+      result = system("osascript -e '#{self.apple_script(phone, text)}'")
+      unless result
+        puts "error executing applescript. sending simplified version.."
+        simple = text.gsub(/[^0-9a-z]/i, ' ')
+        system("osascript -e '#{self.apple_script(phone, simple)}'")
+      end
     end
   end
 end
