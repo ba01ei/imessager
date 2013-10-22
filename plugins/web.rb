@@ -11,12 +11,17 @@ class Web
         timeout(15) do
           result = open(site["url"]).read()
           puts result if testing
+          missing = []
           site["alert_any_not_exist"].each do |phrase|
             if not result.index(phrase)
-              output << "Missing [#{phrase}] in #{site['url']}"
+              missing << phrase
+              # output << "Missing [#{phrase}] in #{site['url']}"
             elsif testing
               puts "Found #{phrase} in #{site['url']}"
             end
+          end
+          if missing.length > 0
+            output << "Missing #{missing.join(',')} in #{site['url']}"
           end
         end
       rescue => error

@@ -30,8 +30,10 @@ class IMessageSender
 
   # sends an imessage
   def self.send(phone, text)
+    p "requiring lock"
     File.open("/tmp/.imessager", "w") do |f|
       f.flock File::LOCK_EX
+      p 'got lock'
       puts "apple script: #{self.apple_script(phone, text)}"
       result = system("osascript -e '#{self.apple_script(phone, text)}'")
       unless result
@@ -40,6 +42,7 @@ class IMessageSender
         system("osascript -e '#{self.apple_script(phone, simple)}'")
       end
     end
+    p 'done'
   end
 end
 
