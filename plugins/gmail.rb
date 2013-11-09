@@ -3,7 +3,7 @@ require 'gmail'
 class GMail
 
   def self.run(conf, testing)
-    trace_back = testing ? 30*24*3600 : 2*24*3600
+    trace_back = testing ? 30*24*3600 : 30*24*3600
     output = []
     conf["accounts"].each do |account|
       # validate first
