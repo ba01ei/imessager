@@ -6,11 +6,14 @@ require File.join(DIR, "config.rb")
 
 if __FILE__ == $0
   script = `crontab -l`;
-  lines = script.split("\n")
+  old_lines = script.split("\n")
+  lines = []
   # puts lines.count
-  lines.each do |line|
+  old_lines.each do |line|
     if line.index("run_tasks")
-      lines.delete(line)
+      # old_lines.delete(line)
+    else
+      lines << line
     end
   end
   TRIGGERS.each do |trigger, config|
