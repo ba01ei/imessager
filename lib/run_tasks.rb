@@ -4,6 +4,10 @@ DIR = File.expand_path(File.dirname(__FILE__))
 CONF_FILE =  File.join(DIR, "..", "config.rb")
 require CONF_FILE
 require File.join(DIR, "imessage_sender.rb")
+require File.join(DIR, "gtalk_sender.rb")
+
+require 'aescrypt'
+require 'base64'
 
 if __FILE__ == $0
   if ARGV.count < 1
@@ -47,4 +51,19 @@ if __FILE__ == $0
       sleep 2
     end
   end
+  
+  if GTALK_SENDER and GTALK_RECEIVERS
+    if GTALK_SENDER["key"].to_s.length > 0
+      private_key = File.read(File.join(DIR, "..", "data", ".key"))
+      GTALK_SENDER["password"] = AESCrypt.decrypt(GTALK_SENDER["key"], private_key)
+    end
+    account = GTALK_SENDER["username"]
+    pass = GTALK_SENDER["password"]
+    if pass.to_s.length > 0 and account.to_s.length > 0
+      messages.each do |txt|
+        GTALK_RECEIVERS.each {|target| GTalkSender.send(account, pass, target, txt)}
+      end
+    end
+  end
+  crash # figure out a better way to quit
 end
