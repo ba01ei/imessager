@@ -2,15 +2,39 @@
 TRIGGERS = {
   "GMail" => {
     "accounts" => [
-      {"username" => "myaddress@gmail.com", 
-      "password" => "mypassword",
-      }
+      {"username" => "mygmail1@gmail.com", 
+      "password" => "123",
+      },
+      {"username" => "mygmail2@gmail.com", 
+      "password" => "456",
+      },
     ],
-    "period" => 5
+    "keep" => ["[Reminder]", "[important]"],
+    "ignore" => ["spam"],
+    "limit" => 2, # max number of emails pushed at once per gmail account
+    "period" => 5  # polling period in minutes
+  },
+  "Web" => {
+    "period" => 5,
+    "sites" => [
+      {
+        "url" => "https://www.google.com",
+        "alert_any_not_exist" => ['google'],
+      },
+    ],
   }
 }
 
+SLEEP = [2330, 900]
+
 RECEIVERS = [
-  "+19876543210",
+  "1234567890",  # iPhone phone number here
 ]
 
+GTALK_SENDER = {
+  "username"=>"mysender@gmail.com",
+  "password" => "123",
+}
+GTALK_RECEIVERS = [
+  "mainAccount@gmail.com",
+]

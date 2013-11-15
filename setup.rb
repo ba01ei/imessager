@@ -5,7 +5,8 @@ require 'aescrypt'
 
 DIR = File.expand_path(File.dirname(__FILE__))
 RUNNER = File.join(DIR, "lib", "run_tasks.rb")
-CONFIG = File.join(DIR, "config.rb")
+CONFIG = File.join(DIR, "config.private.rb")
+CONFIG = File.join(DIR, "config.rb") unless File.exists?(CONFIG)
 require CONFIG
 
 def setup_cron
