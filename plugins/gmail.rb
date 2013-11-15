@@ -1,4 +1,6 @@
 require 'gmail'
+require 'aescrypt'
+require 'base64'
 
 class GMail
 
@@ -7,9 +9,16 @@ class GMail
     output = []
     conf["accounts"].each do |account|
       # validate first
-      if account["username"].to_s.length < 1 or account["password"].to_s.length < 1
-        puts "missing gmail user name or password"
-        return []
+      if account["username"].to_s.length < 1
+        puts "missing gmail user name"
+        next
+      elsif account["key"].to_s.length > 0
+        private_key = File.read(File.join(File.expand_path(File.dirname(__FILE__)), "..", "data", ".key"))
+        account["password"] = AESCrypt.decrypt(account["key"], private_key)
+      end
+      if account["password"].to_s.length < 1
+        puts "missing gmail password"
+        next
       end
 
       # sleep check
