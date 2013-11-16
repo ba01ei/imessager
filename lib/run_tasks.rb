@@ -66,5 +66,4 @@ if __FILE__ == $0
       end
     end
   end
-  crash # figure out a better way to quit
 end
