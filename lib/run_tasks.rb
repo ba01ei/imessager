@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 
 DIR = File.expand_path(File.dirname(__FILE__))
-CONF_FILE =  File.join(DIR, "..", "config.private.rb")
-CONF_FILE =  File.join(DIR, "..", "config.rb") unless File.exists? CONF_FILE
+CONF_FILE1 =  File.join(DIR, "..", "config.private.rb")
+CONF_FILE =  File.join(DIR, "..", "config.rb") unless File.exists? CONF_FILE1
 require CONF_FILE
 require File.join(DIR, "imessage_sender.rb")
 require File.join(DIR, "gtalk_sender.rb")

@@ -6,7 +6,7 @@ class Web
   def self.run(conf, testing)
     output = []
     conf["sites"].each do |site|
-      puts "working on: " + site["url"] if testing
+      puts "working on: #{site["url"]}" if testing
       begin
         timeout(15) do
           result = open(site["url"]).read()
@@ -26,7 +26,7 @@ class Web
         end
       rescue => error
         if testing
-          puts "down: " + site["url"]
+          puts "down: #{site["url"]}"
         end
       end
     end
